@@ -18,11 +18,11 @@ void print(std::string words) {
 
 int main() {
 	// graph from adjlist
-	std::vector<std::array<int, 3>> adjl1{
-		{0, 1, 25},
-		{1, 2, 30},
-		{2, 3, 10},
-		{3, 0, 15},
+	std::vector<std::vector<std::array<int, 2>>> adjl1{
+		{{1, 25}, {2, 10}},
+		{{2, 30}, {3, 20}},
+		{{3, 10}},
+		{{0, 15}},
 	};
 	Graph graph1(adjl1);
 	// graph from adjmatrix
@@ -34,17 +34,17 @@ int main() {
 	std::vector<std::vector<int>> adjm1{
 		{INF,	25,	INF,	15},
 		{25,	INF,	30,	INF},
-		{INF,	30,	INF,	10},
+		{INF,	INF,	INF,	INF},
 		{15,	INF,	10,	INF},
 	};
-	Graph graph2(adjm1);
+	Graph graph2(adjm1, 'm');
 	print("Adjacency matrix for graph 2");
 	graph2.print('m');
 	graph2.make_adjlist();
 	print("Adjacency list for graph 2");
 	graph2.print();
 	// graph from adjlist without weights
-	std::vector<std::array<int, 2>> adjl2{
+	std::vector<std::vector<int>> adjl2{
 		{1, 2},
 		{2, 3},
 		{3, 4},

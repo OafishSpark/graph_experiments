@@ -1,4 +1,4 @@
-#pragma onces
+#pragma once
 
 
 #include <vector>
@@ -6,9 +6,8 @@
 #include <cassert>
 #include <iostream>
 
-#define IN	0
-#define OUT	1
-#define WEIGHT	2
+#define OUT	0
+#define WEIGHT	1
 
 
 const int INF = 20000000;
@@ -16,10 +15,10 @@ const int INF = 20000000;
 
 class Graph{
 	/*
-		adjacency list should cosnsist of 3 elements:
-		(int start_point, int end_point, int weight)
+		adjacency list should cosnsist of V vectors which consists of pairs:
+		(int end_point, int weight)
 	*/
-	std::vector<std::array<int, 3>> adjlist;
+	std::vector<std::vector<std::array<int, 2>>> adjlist;
 	/*
 		adjacency matrix is a square matrix (E, E)
 		element of matrix is a weight edge
@@ -27,22 +26,19 @@ class Graph{
 	*/
 	std::vector<std::vector<int>> adjmatrix;
 public:
-	Graph(std::vector<std::array<int, 3>> adjl) : adjlist{adjl} {}
-	
-	Graph(std::vector<std::vector<int>> adjm);
-	
-	Graph(const std::vector<std::array<int, 2>>& adjl);
-	
-	const std::vector<std::array<int, 3>>& get_adjlist() const;
+	Graph(std::vector<std::vector<std::array<int, 2>>> adjl) : adjlist{adjl} {} 
+
+	Graph(const std::vector<std::vector<int>>& adjl, char mode = 'l');
+
+	const std::vector<std::vector<std::array<int, 2>>>& get_adjlist() const;
 	
 	void print(char mode = 'l') const;
 	
-	void make_adjlist(const char mode = 'u');
+	void make_adjlist(); // 
 	
-	void make_adjmatrix(const char mode = 'u');
+	void make_adjmatrix(); // 
 };
 
 
-#undef IN
 #undef OUT
 #undef WEIGHT
